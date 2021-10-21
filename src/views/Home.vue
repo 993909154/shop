@@ -2,7 +2,7 @@
   <el-container>
     <el-header style="padding: 0px">
       <el-menu
-          default-active='/cart'
+          :default-active='$route.path'
           router
           class="el-menu-demo"
           mode="horizontal"

@@ -16,7 +16,14 @@
         </el-menu-item>
       </el-menu>
     </el-aside>
-    <el-main>Main</el-main>
+    <el-main>
+      <el-breadcrumb separator="/">
+        <el-breadcrumb-item v-for="(item, index) in breadcrumb" :key="index" :to="{path:item.path}">
+            {{ item.meta.title }}
+        </el-breadcrumb-item>
+      </el-breadcrumb>
+      <router-view></router-view>
+    </el-main>
   </el-container>
 </template>
 
@@ -29,6 +36,20 @@ export default {
         {icon: 'box', path: '/item/list', name: '商品管理'},
         {icon: 'document', path: '/item/list', name: '订单管理'},
       ]
+    }
+  },
+  computed: {
+    routes() {
+      return this.$router.options.routes.filter((item) => {
+            return item.meta.showInBreadcrumb
+          }
+      );
+    },
+    breadcrumb() {
+      let mataChedArr = this.$route.matched.filter((item) => {
+        return item.meta.showInBreadcrumb
+      });
+      return mataChedArr
     }
   }
 }

@@ -8,48 +8,60 @@ import AsideNavigation from "../views/AsideNavigation";
 Vue.use(VueRouter)
 
 const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home,
-    redirect: {name: 'Cart'},
-    children: [
-      {
-        path: '/cart',
-        name: 'Cart',
-        component: () => import(/* webpackChunkName: "about" */ '../views/Cart.vue')
-      },
-      {
-        path: '/aside',
-        name: 'AsideNavigation',
-        component: AsideNavigation
-      },
-      {
-        path: '/item/list',
-        name: 'ItemList',
-        component: ItemList
-      }
-    ]
-  },
-  {
-    path: '/login',
-    name: 'Login',
-    component: Login
-  },
+    {
+        path: '/',
+        name: 'Home',
+        component: Home,
+        redirect: {
+            name: 'Cart'
+        },
+        children: [
+            {
+                path: '/cart',
+                name: 'Cart',
+                component: () => import(/* webpackChunkName: "about" */ '../views/Cart.vue'),
+            },
+            {
+                path: '/aside',
+                name: 'AsideNavigation',
+                component: AsideNavigation,
+                meta: {
+                    title: '我的工作台',
+                    showInBreadcrumb: true
+                },
+                children: [
+                    {
+                        path: '/item/list',
+                        name: 'ItemList',
+                        component: ItemList,
+                        meta: {
+                            title: '商品列表',
+                            showInBreadcrumb: true
+                        }
+                    }
+                ]
+            },
+        ]
+    },
+    {
+        path: '/login',
+        name: 'Login',
+        component: Login
+    },
 ]
 
 const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes
+    mode: 'history',
+    base: process.env.BASE_URL,
+    routes
 })
 
 router.beforeEach(async (to, from, next) => {
-  const TOKEN = localStorage.getItem('token');
-  if (!TOKEN && to.path !== '/login') {
-    next({name: 'Login', replace: true})
-    return
-  }
-  next()
+    const TOKEN = localStorage.getItem('token');
+    if (!TOKEN && to.path !== '/login') {
+        next({name: 'Login', replace: true})
+        return
+    }
+    next()
 })
 export default router
