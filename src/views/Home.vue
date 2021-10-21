@@ -3,7 +3,7 @@
     <el-header style="padding: 0px">
       <el-menu
           router
-          :default-active="activeIndex2"
+          :default-active="/cart/"
           class="el-menu-demo"
           mode="horizontal"
           background-color="#545c64"
@@ -14,12 +14,13 @@
         </el-col>
         <el-menu-item v-for="(item, i) in List" :key="i" :index="item.path">
           <template slot="title">
+            <i :class="'el-icon-' + item.icon"></i>
             <span>{{ item.name }}</span>
           </template>
         </el-menu-item>
       </el-menu>
     </el-header>
-    <el-main>
+    <el-main style="padding: 3px 0px 0px 0px">
       <router-view></router-view>
     </el-main>
   </el-container>
@@ -33,7 +34,9 @@ export default {
   data() {
     return {
       List: [
-        {path: '/about', name: '收银台'}
+        {icon: 'user', path: '/cart', name: '收银台'},
+        {icon: 'tickets', path: '/aside', name: '工作台'},
+        {icon: 'pie-chart',path: '/order', name: '订单详情'}
       ]
     }
   }
@@ -44,7 +47,6 @@ export default {
   margin: 10px 10px 2px 5px;
   height: 42px;
 }
-
 
 
 </style>

@@ -2,6 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Login from "../views/Login";
+import ItemList from "../views/ItemList";
+import AsideNavigation from "../views/AsideNavigation";
 
 Vue.use(VueRouter)
 
@@ -10,12 +12,22 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home,
-    redirect: {name: 'About'},
+    redirect: {name: 'Order'},
     children: [
       {
-        path: '/about',
-        name: 'About',
-        component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+        path: '/cart',
+        name: 'Cart',
+        component: () => import(/* webpackChunkName: "about" */ '../views/Cart.vue')
+      },
+      {
+        path: '/aside',
+        name: 'AsideNavigation',
+        component: AsideNavigation
+      },
+      {
+        path: '/item/list',
+        name: 'ItemList',
+        component: ItemList
       }
     ]
   },
