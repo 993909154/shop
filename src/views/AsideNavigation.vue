@@ -3,7 +3,7 @@
     <el-aside width="170px">
       <el-menu
           router
-          default-active="2"
+          default-active="/item/list"
           class="el-menu-vertical-demo"
           background-color="#545c64"
           text-color="#fff"

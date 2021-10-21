@@ -45,7 +45,7 @@ export default {
       loginService.login(this.form).then((res) => {
         this.$message.success('登录成功')
         localStorage.setItem("token", res.token)
-        this.$router.push(
+        this.$router.replace(
             {name: 'Home'}
         )
       })

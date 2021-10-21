@@ -12,7 +12,7 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home,
-    redirect: {name: 'Order'},
+    redirect: {name: 'Cart'},
     children: [
       {
         path: '/cart',

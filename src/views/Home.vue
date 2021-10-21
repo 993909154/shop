@@ -2,8 +2,8 @@
   <el-container>
     <el-header style="padding: 0px">
       <el-menu
+          default-active='/cart'
           router
-          :default-active="/cart/"
           class="el-menu-demo"
           mode="horizontal"
           background-color="#545c64"
@@ -36,7 +36,7 @@ export default {
       List: [
         {icon: 'user', path: '/cart', name: '收银台'},
         {icon: 'tickets', path: '/aside', name: '工作台'},
-        {icon: 'pie-chart',path: '/order', name: '订单详情'}
+        {icon: 'pie-chart',path: '/111', name: '订单详情'}
       ]
     }
   }
