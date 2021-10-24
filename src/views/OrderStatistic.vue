@@ -25,10 +25,9 @@ export default {
       this.OrderStatistic = echarts.init(document.getElementById('statistic'));
       this.OrderStatistic.setOption({
         title: {
-          test: '订单',
-          show: true,
-          x: 'left',
-          y: 'top',
+          text: '订单统计',
+          x: 'center',
+          y: 'top'
         },
         xAxis: {
           type: 'category',
