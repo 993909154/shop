@@ -13,5 +13,8 @@ export default {
     },
     delete(id){
         return request.delete(API.item(id))
+    },
+    edit(id, param){
+        return request.put(API.item(id), param)
     }
 }

@@ -51,10 +51,10 @@
               width="160"
               ref="popover{{$index}}"
               v-model="scope.row.visible">
-            <p>请再次确认是否删除？</p>
+            <p>真的要删除该商品吗？</p>
             <div style="text-align: right; margin: 0">
-              <el-button size="mini" type="text" @click="scope.row.visible = false">取消</el-button>
-              <el-button type="primary" size="mini" @click="handleDelete(scope.$index, scope.row)">确定</el-button>
+              <el-button size="mini" type="primary" @click="scope.row.visible = false">取消</el-button>
+              <el-button type="danger" size="mini" @click="handleDelete(scope.$index, scope.row)">确定</el-button>
             </div>
           </el-popover>
           <el-button size="mini" icon="el-icon-delete" type="danger" v-popover:popover{{$index}} style="margin-left: 10px">删除</el-button>
@@ -125,10 +125,14 @@ export default {
         this.getList()
       })
     },
-    handleUpdate() {
+    handleUpdate(index, row) {
+      let id = row.id;
       this.$router.push(
           {
-            name: 'ItemUpdate'
+            name: 'ItemUpdate',
+            query: {
+              id: id,
+            }
           }
       )
     },

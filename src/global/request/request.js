@@ -54,4 +54,7 @@ export default {
     delete(url = '', data = {}, config = {}) {
         return request.delete(url, data, config)
     },
+    put(url = '', data = {}, config = {}) {
+        return request.put(url, data, config)
+    },
 }
