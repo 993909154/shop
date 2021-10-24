@@ -44,8 +44,19 @@
       <el-table-column
           label="操作">
         <template slot-scope="scope">
-          <el-button icon="el-icon-edit" type="info" size="mini">编辑</el-button>
-          <el-button icon="el-icon-delete" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+          <el-button icon="el-icon-edit" type="info" size="mini" @click="handleUpdate(scope.$index, scope.row)">编辑</el-button>
+          <el-popover
+              placement="top"
+              width="160"
+              ref="popover{{$index}}"
+              v-model="scope.row.visible">
+            <p>请再次确认是否删除？</p>
+            <div style="text-align: right; margin: 0">
+              <el-button size="mini" type="text" @click="scope.row.visible = false">取消</el-button>
+              <el-button type="primary" size="mini" @click="handleDelete(scope.$index, scope.row)">确定</el-button>
+            </div>
+          </el-popover>
+          <el-button size="mini" icon="el-icon-delete" type="danger" v-popover:popover{{$index}}>删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -59,8 +70,10 @@ export default {
   name: "ItemList",
   data() {
     return {
-      tableData: [],
+      tableData: [
+      ],
       barcode: '',
+      visible: false
     }
   },
   created() {
@@ -87,10 +100,17 @@ export default {
       )
     },
     handleDelete(index, row) {
+      this.visible = false
       itemService.delete(row.id).then(() => {
         this.$message.success('删除成功')
         this.getList()
       })
+    },
+    handleUpdate() {
+
+    },
+    check(index){
+      console.log(index)
     }
   }
 }
