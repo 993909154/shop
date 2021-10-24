@@ -9,7 +9,7 @@
           <el-input v-model="form.username" placeholder='请输入用户名' prefix-icon="el-icon-user"></el-input>
         </el-form-item>
         <el-form-item label="密码:" prop="password">
-          <el-input v-model="form.password" type: show-password placeholder='请输入密码' prefix-icon="el-icon-key"></el-input>
+          <el-input v-model="form.password" type: show-password placeholder='请输入密码' prefix-icon="el-icon-key" @keyup.enter.native="login"></el-input>
         </el-form-item>
         <el-button type="primary" @click="login">登录</el-button>
       </el-form>
@@ -49,7 +49,7 @@ export default {
             {name: 'Home'}
         )
       })
-    }
+    },
   }
 }
 </script>
