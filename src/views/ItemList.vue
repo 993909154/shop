@@ -44,7 +44,8 @@
       <el-table-column
           label="操作">
         <template slot-scope="scope">
-          <el-button icon="el-icon-edit" type="info" size="mini" @click="handleUpdate(scope.$index, scope.row)">编辑</el-button>
+          <el-button icon="el-icon-edit" type="info" size="mini" @click="handleUpdate(scope.$index, scope.row)">编辑
+          </el-button>
           <el-popover
               placement="top"
               width="160"
@@ -56,10 +57,21 @@
               <el-button type="primary" size="mini" @click="handleDelete(scope.$index, scope.row)">确定</el-button>
             </div>
           </el-popover>
-          <el-button size="mini" icon="el-icon-delete" type="danger" v-popover:popover{{$index}}>删除</el-button>
+          <el-button size="mini" icon="el-icon-delete" type="danger" v-popover:popover{{$index}} style="margin-left: 10px">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
+    <div class="block">
+      <el-pagination
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
+          :current-page.sync="pageable.pageNumber"
+          :page-sizes="[10, 20, 30, 40]"
+          :page-size="pageable.pageSize"
+          layout="total, sizes, prev, pager, next, jumper"
+          :total="totalElements">
+      </el-pagination>
+    </div>
   </div>
 </template>
 
@@ -70,10 +82,14 @@ export default {
   name: "ItemList",
   data() {
     return {
-      tableData: [
-      ],
+      tableData: [],
+      pageable: {
+        pageNumber: 1,
+        pageSize: 10
+      },
+      totalElements: 0,
       barcode: '',
-      visible: false
+      visible: false,
     }
   },
   created() {
@@ -83,10 +99,13 @@ export default {
     async getList() {
       let res = await itemService.getList(
           {
-            barcode: this.barcode
+            barcode: this.barcode,
+            page: this.pageable.pageNumber - 1,
+            size: this.pageable.pageSize
           }
       );
       this.tableData = res.content
+      this.totalElements = res.totalElements
     },
     handleFind() {
       this.getList()
@@ -109,8 +128,13 @@ export default {
     handleUpdate() {
 
     },
-    check(index){
-      console.log(index)
+    handleSizeChange(val) {
+      this.pageable.pageSize = val;
+      this.getList()
+    },
+    handleCurrentChange(val) {
+      this.$route.query.page = val;
+      this.getList()
     }
   }
 }
