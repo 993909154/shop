@@ -36,7 +36,7 @@ export default {
       List: [
         {icon: 'user', path: '/cart', name: '收银台'},
         {icon: 'tickets', path: '/aside', name: '工作台'},
-        {icon: 'pie-chart',path: '/111', name: '订单详情'}
+        {icon: 'pie-chart',path: '/order/statistic', name: '订单统计'}
       ]
     }
   },

@@ -3,5 +3,7 @@ export default {
     items : '/items',
     item: (id) => `/items/${id}`,
     cart : '/shopping-cart',
-    order : '/orders',
+    orders : '/orders',
+    order: (id) => `/orders/${id}`,
+    statistic: '/orders/statistic'
 }

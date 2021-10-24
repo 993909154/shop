@@ -6,6 +6,9 @@ import ItemList from "../views/ItemList";
 import AsideNavigation from "../views/AsideNavigation";
 import ItemCreate from "../views/ItemCreate";
 import ItemUpdate from "../views/ItemUpdate";
+import OrderList from "../views/OrderList";
+import OrderDetailed from "../views/OrderDetailed";
+import OrderStatistic from "../views/OrderStatistic";
 
 Vue.use(VueRouter)
 
@@ -45,13 +48,14 @@ const routes = [
                         component: {
                             render: h => h('router-view')
                         },
+                        redirect: {name: 'ItemListSelf'},
                         meta: {
                             title: '商品列表',
                             showInBreadcrumb: true,
                             activeMenu: '/aside',
                             apiActiveMenu: '/item/list'
                         },
-                        children:[
+                        children: [
                             {
                                 path: '/item/list',
                                 name: 'ItemListSelf',
@@ -88,10 +92,56 @@ const routes = [
 
                         ]
                     },
-
-
+                    {
+                        path: '/order/list',
+                        name: 'OrderList',
+                        component: {
+                            render: h => h('router-view')
+                        },
+                        redirect: {
+                            name: 'OrderList'
+                        },
+                        meta: {
+                            title: '订单列表',
+                            showInBreadcrumb: true,
+                            activeMenu: '/aside',
+                            apiActiveMenu: '/order/list'
+                        },
+                        children: [
+                            {
+                                path: '/order/list',
+                                name: 'OrderListSelf',
+                                component: OrderList,
+                                meta: {
+                                    title: '订单列表',
+                                    showInBreadcrumb: false,
+                                    activeMenu: '/aside',
+                                    apiActiveMenu: '/order/list'
+                                },
+                            },
+                            {
+                                path: '/order/detailed',
+                                name: 'OrderDetailed',
+                                component: OrderDetailed,
+                                meta: {
+                                    title: '订单详情',
+                                    showInBreadcrumb: true,
+                                    activeMenu: '/aside',
+                                    apiActiveMenu: '/order/list'
+                                },
+                            }
+                        ]
+                    }
                 ]
             },
+            {
+                path: '/order/statistic',
+                name: 'OrderStatistic',
+                component: OrderStatistic,
+                meta: {
+                    activeMenu: '/order/statistic',
+                },
+            }
         ]
     },
     {

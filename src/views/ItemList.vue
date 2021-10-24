@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div style="text-align: left">
+    <div style="text-align: left; padding-top: 10px">
       <el-input placeholder="请输入需要查询的商品条码" style="padding: 5px 10px 5px 0px; width: 220px" v-model="barcode">
         <i class="el-icon-search"></i>
       </el-input>
@@ -10,39 +10,35 @@
     <el-table
         :data="tableData"
         border
-        style="width: 100%">
+        style="width: 90%">
       <el-table-column
           prop="barcode"
-          label="条码"
-          width="160">
+          label="条码">
       </el-table-column>
       <el-table-column
           prop="name"
-          label="名称"
-          width="160">
+          label="名称">
       </el-table-column>
       <el-table-column
-          label="价格"
-          width="160">
+          label="价格">
         <template slot-scope="scope">
           {{ scope.row.price + ' 元' }}
         </template>
       </el-table-column>
       <el-table-column
           prop="type"
-          label="类型"
-          width="160">
+          label="类型">
         <template slot-scope="scope">
           {{ scope.row.type === '0' ? '计件商品' : '计重商品' }}
         </template>
       </el-table-column>
       <el-table-column
           prop="unit"
-          label="单位"
-          width="160">
+          label="单位">
       </el-table-column>
       <el-table-column
-          label="操作">
+          label="操作"
+      >
         <template slot-scope="scope">
           <el-button icon="el-icon-edit" type="info" size="mini" @click="handleUpdate(scope.$index, scope.row)">编辑
           </el-button>
@@ -57,7 +53,9 @@
               <el-button type="danger" size="mini" @click="handleDelete(scope.$index, scope.row)">确定</el-button>
             </div>
           </el-popover>
-          <el-button size="mini" icon="el-icon-delete" type="danger" v-popover:popover{{$index}} style="margin-left: 10px">删除</el-button>
+          <el-button size="mini" icon="el-icon-delete" type="danger" v-popover:popover{{$index}}
+                     style="margin-left: 10px">删除
+          </el-button>
         </template>
       </el-table-column>
     </el-table>

@@ -51,8 +51,9 @@ export default {
         const OPTIONS = Object.assign({params}, config)
         return request.get(url, OPTIONS)
     },
-    delete(url = '', data = {}, config = {}) {
-        return request.delete(url, data, config)
+    delete(url = '', params = {}, config = {}) {
+        const OPTIONS = Object.assign({params}, config)
+        return request.delete(url, OPTIONS)
     },
     put(url = '', data = {}, config = {}) {
         return request.put(url, data, config)
