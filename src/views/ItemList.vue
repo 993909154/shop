@@ -126,7 +126,11 @@ export default {
       })
     },
     handleUpdate() {
-
+      this.$router.push(
+          {
+            name: 'ItemUpdate'
+          }
+      )
     },
     handleSizeChange(val) {
       this.pageable.pageSize = val;

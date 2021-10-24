@@ -5,6 +5,7 @@ import Login from "../views/Login";
 import ItemList from "../views/ItemList";
 import AsideNavigation from "../views/AsideNavigation";
 import ItemCreate from "../views/ItemCreate";
+import ItemUpdate from "../views/ItemUpdate";
 
 Vue.use(VueRouter)
 
@@ -70,9 +71,21 @@ const routes = [
                                     title: '商品添加',
                                     showInBreadcrumb: true,
                                     activeMenu: '/aside',
-                                    apiActiveMenu: '/item/create'
+                                    apiActiveMenu: '/item/list'
+                                }
+                            },
+                            {
+                                path: '/item/update',
+                                name: 'ItemUpdate',
+                                component: ItemUpdate,
+                                meta: {
+                                    title: '商品编辑',
+                                    showInBreadcrumb: true,
+                                    activeMenu: '/aside',
+                                    apiActiveMenu: '/item/list'
                                 }
                             }
+
                         ]
                     },
 

@@ -3,7 +3,7 @@
     <el-aside width="170px">
       <el-menu
           router
-          :default-active="this.$route.path"
+          :default-active="apiActiveMenu"
           class="el-menu-vertical-demo"
           background-color="#545c64"
           text-color="#fff"
@@ -53,6 +53,14 @@ export default {
       });
       return mataChedArr
     },
+    apiActiveMenu() {
+      const route = this.$route
+      const { meta, path} = route
+      if(meta.apiActiveMenu){
+        return meta.apiActiveMenu
+      }
+      return path
+    }
   }
 }
 </script>
