@@ -3,7 +3,7 @@
     <el-aside width="170px">
       <el-menu
           router
-          default-active="/item/list"
+          :default-active="this.$route.path"
           class="el-menu-vertical-demo"
           background-color="#545c64"
           text-color="#fff"
@@ -17,11 +17,13 @@
       </el-menu>
     </el-aside>
     <el-main>
-      <el-breadcrumb separator="/">
-        <el-breadcrumb-item v-for="(item, index) in breadcrumb" :key="index" :to="{path:item.path}">
+      <div style="padding: 0px 0px 5px 0px">
+        <el-breadcrumb separator="/">
+          <el-breadcrumb-item v-for="(item, index) in breadcrumb" :key="index" :to="{path:item.path}">
             {{ item.meta.title }}
-        </el-breadcrumb-item>
-      </el-breadcrumb>
+          </el-breadcrumb-item>
+        </el-breadcrumb>
+      </div>
       <router-view></router-view>
     </el-main>
   </el-container>
@@ -34,8 +36,8 @@ export default {
     return {
       List: [
         {icon: 'box', path: '/item/list', name: '商品管理'},
-        {icon: 'document', path: '/item/list', name: '订单管理'},
-      ]
+        {icon: 'document', path: '/order/list', name: '订单管理'},
+      ],
     }
   },
   computed: {
@@ -50,7 +52,7 @@ export default {
         return item.meta.showInBreadcrumb
       });
       return mataChedArr
-    }
+    },
   }
 }
 </script>

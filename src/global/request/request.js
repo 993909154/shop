@@ -43,5 +43,15 @@ request.interceptors.response.use(
 export default {
     post(url = '', data = {}, config = {}) {
         return request.post(url, data, config)
-    }
+    },
+    // get(url = '', data = {}, config = {}) {
+    //     return request.get(url, data, config)
+    // },
+    get(url = '', params = {}, config = {}){
+        const OPTIONS = Object.assign({params}, config)
+        return request.get(url, OPTIONS)
+    },
+    delete(url = '', data = {}, config = {}) {
+        return request.delete(url, data, config)
+    },
 }

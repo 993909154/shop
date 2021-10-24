@@ -2,7 +2,7 @@
   <el-container>
     <el-header style="padding: 0px">
       <el-menu
-          :default-active='$route.path'
+          :default-active='activeMenu'
           router
           class="el-menu-demo"
           mode="horizontal"
@@ -39,7 +39,18 @@ export default {
         {icon: 'pie-chart',path: '/111', name: '订单详情'}
       ]
     }
+  },
+  computed: {
+    activeMenu() {
+      const route = this.$route
+      const { meta, path} = route
+      if(meta.activeMenu){
+        return meta.activeMenu
+      }
+      return path
+    }
   }
+
 }
 </script>
 <style>
